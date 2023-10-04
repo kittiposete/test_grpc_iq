@@ -1,0 +1,41 @@
+syntax = "proto3";
+package com.chula.iq180;
+option java_package = "com.chula.iq";
+option java_multiple_files = true;
+
+service IQ180 {
+  rpc HandCheck (HandCheckRequest) returns (HandCheckResponse) {}
+  rpc EnterGame (EnterGameRequest) returns (EnterGameResponse) {}
+  rpc GetTime (GetTimeRequest) returns (GetTimeResponse) {}
+  rpc SubmitAnswer (SubmitAnswerRequest) returns (SubmitAnswerResponse) {}
+}
+message SubmitAnswerRequest {
+  string token = 1;
+  string time = 2;
+  // answer is image
+  bytes answer = 3;
+}
+
+message SubmitAnswerResponse {
+  int64 status_code = 1;
+}
+
+message GetTimeRequest {}
+message GetTimeResponse {
+  string time = 1;
+}
+
+message HandCheckRequest {}
+
+message HandCheckResponse {
+  string result = 1;
+}
+
+message EnterGameRequest {
+  string name = 1;
+}
+
+message EnterGameResponse {
+  int64 status_code = 1;
+  string token = 2;
+}
